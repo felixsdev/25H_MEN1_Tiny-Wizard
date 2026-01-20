@@ -80,6 +80,15 @@ class Player {
             this.vx = this.vx > 0 ? diagSpeed : -diagSpeed;
             this.vy = this.vy > 0 ? diagSpeed : -diagSpeed;
         }
+
+        // Play movement sound
+        if (gameState === 'RUNNING' && (this.vx !== 0 || this.vy !== 0) && !assets.audio.sfxPlayerMove.isPlaying()) {
+            assets.audio.sfxPlayerMove.loop();
+            assets.audio.sfxPlayerMove.setVolume(1.5);
+        }
+        else if (this.vx === 0 && this.vy === 0) {
+            assets.audio.sfxPlayerMove.stop();
+        }
     }
 
     // Checks collision and apply the new velocity (vx and vy) to the player's position (x and y). (Called in draw)

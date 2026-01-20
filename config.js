@@ -12,13 +12,14 @@ const assets = {
     player: {},
     enemy: {},
     walls: {},
-    floors: {}
+    floors: {},
+    audio: {}
 };
 
 // Game state globals
 let gameState = 'SELECTOR'; // 'SELECTOR', 'LOADING', 'RUNNING', 'WIN', 'LOSE'
 let currentLevel = 0;
-let unlockedLevel = 3;
+let unlockedLevel = 1;
 
 // Player settings
 let playerShootCooldown = 40;
@@ -40,4 +41,9 @@ let cellWidth, cellHeight;
 
 // UI Elements
 let selectorGui;
-let levelButtons = []; 
+let levelButtons = [];
+
+// Audio
+let hasPlayedStartTransition = false;
+let hasPlayedWinSound = false;
+let hasPlayedLoseSound = false;

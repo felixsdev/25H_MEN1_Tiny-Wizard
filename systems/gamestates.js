@@ -46,6 +46,22 @@ function setupLevelSelector() {
 // DRAW LEVEL SELECTOR SCREEN
 
 function drawSelector() {
+    // Reset for next level start
+    hasPlayedStartTransition = false; 
+    hasPlayedWinSound = false;
+    hasPlayedLoseSound = false;
+
+    // Stop game music if playing
+    if (assets.audio.musicGame.isPlaying()) {
+        assets.audio.musicGame.stop();
+    }
+    // Only start the music if it is not currently playing
+    if (!assets.audio.musicMenu.isPlaying()) {
+        assets.audio.musicMenu.loop();
+        assets.audio.musicMenu.setVolume(0.5);
+    }
+
+    // Draw background and UI
     background(20);
     push();
     fill(255);
@@ -53,19 +69,45 @@ function drawSelector() {
     textSize(40);
     text("Level Selector", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 4);
     drawGui(selectorGui);
+
     // Check button clicks
     for (let i = 0; i < levelButtons.length; i++) {
         if (levelButtons[i].isPressed && unlockedLevel >= levels[i].id) {
             loadLevelData(levels[i].id);
         }
+        else if (levelButtons[i].isPressed && unlockedLevel < levels[i].id) {
+            // Play denied sound
+            if (!assets.audio.sfxButtonDenied.isPlaying()) {
+                assets.audio.sfxButtonDenied.play();
+            }
+        }
     }
     pop();
+
+    // Stop orphaned sounds
+    assets.audio.sfxPlayerMove.stop();
 }
 
 // DRAW THE CURRENT LEVEL
-
 function drawLevel() {
+    // Stop menu music if playing
+    if (assets.audio.musicMenu.isPlaying()) {
+        assets.audio.musicMenu.stop();
+    }
+    // Transition Sound at Level Start
+    if (hasPlayedStartTransition === false) {
+        assets.audio.transitionLevelStart.play();
+        hasPlayedStartTransition = true;
+    }
+    // If the transition sound has finished, start the game music
+    if (!assets.audio.transitionLevelStart.isPlaying() && !assets.audio.musicGame.isPlaying()) {
+        assets.audio.musicGame.loop();
+        assets.audio.musicGame.setVolume(0.5);
+    }
+
+    // Display the image assets better 
     noSmooth() 
+
     // Draw Walls
     for (const wall of walls) {
         wall.display();
@@ -121,7 +163,6 @@ function drawLevel() {
     pop();
     */
     
-
     // CHECK WIN CONDITION
     if (enemies.length === 0) {
         gameState = 'WIN';
@@ -147,6 +188,15 @@ function drawLoading() {
 // DRAW WIN SCREEN
 
 function drawWin() {
+    // Stop game music if playing
+    if (assets.audio.musicGame.isPlaying()) {
+        assets.audio.musicGame.stop();
+    }
+    // Transition Sound at Level Win
+    if (hasPlayedWinSound === false) {
+        assets.audio.transitionWin.play();
+        hasPlayedWinSound = true;
+    }    
     background(20, 20, 20);
     push();
     fill(0, 255, 0);
@@ -154,11 +204,23 @@ function drawWin() {
     textSize(32);
     text("You Win! Press R to Restart or Esc", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     pop();
+    
+    // Stop orphaned sounds
+    assets.audio.sfxPlayerMove.stop();
 }
 
 // DRAW LOSE SCREEN
 
 function drawLose() {
+    // Stop game music if playing
+    if (assets.audio.musicGame.isPlaying()) {
+        assets.audio.musicGame.stop();
+    }
+    // Transition Sound at Level Lose
+    if (hasPlayedLoseSound === false) {
+        assets.audio.transitionLost.play();
+        hasPlayedLoseSound = true;
+    }    
     background(20, 20, 20);
     push();
     fill(255, 0, 0);
@@ -166,4 +228,7 @@ function drawLose() {
     textSize(32);
     text("You Lose! Press R to Restart or Esc", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
     pop();
+    
+    // Stop orphaned sounds
+    assets.audio.sfxPlayerMove.stop();
 }

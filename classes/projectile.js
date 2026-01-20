@@ -40,6 +40,8 @@ class Projectile {
         for (const wall of walls) {
             if (checkCollision(this, wall)) {
                 this.dead = true;
+                // Play wall hit sound
+                assets.audio.sfxWallHit.play();
                 return;
             }
         }
@@ -59,6 +61,8 @@ class Projectile {
                 if (checkCollision(this, e)) {
                     enemies.splice(i, 1); // Kill enemy
                     this.dead = true;
+                    // Play character hit sound
+                    assets.audio.sfxCharacterHit.play();
                     return; 
                 }
             }

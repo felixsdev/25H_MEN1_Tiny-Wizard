@@ -4,9 +4,8 @@
 // (Player controls are handled in the Player class file "player.js")")
 // ============================================================================
 
-// GAME STATE CONTROLS
-
 function keyPressed() {
+    // GAME STATE CONTROLS
     if (gameState === 'RUNNING' || gameState === 'WIN' || gameState === 'LOSE') {
         if (key === 'Escape') {
             gameState = 'SELECTOR';
@@ -16,10 +15,17 @@ function keyPressed() {
             loadLevelData(currentLevel || 1); 
         }
     }
+    // AUDIO CONTROLS
+    if (key === 'm' || key === 'M') {
+        if (getAudioContext().state === 'running') {
+            getAudioContext().suspend();
+        } else {
+            userStartAudio();
+        }
+    }
 }
 
-// PROJECTILE SHOOTING
-
+// SHOOTING
 function mousePressed() { 
     if (gameState === 'RUNNING' && mouseButton === LEFT && player) {
         // Only shoot if the timer has reached 0
@@ -33,6 +39,9 @@ function mousePressed() {
             
             // Set the timer back to shootCooldown
             player.shootTimer = player.shootCooldown;
+
+            // Play shooting sound
+            assets.audio.sfxPlayerShoot.play();
         }
     }
 }

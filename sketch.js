@@ -43,6 +43,21 @@ function preload() {
     assets.walls[4] = loadImage('assets/sprites/environment/wall_wood.png');
     // placeholder wall 5
 
+    // Audio Assets
+    soundFormats('mp3');
+    // Music
+    assets.audio.musicGame = loadSound('assets/audio/music-fight.mp3');
+    assets.audio.musicMenu = loadSound('assets/audio/music-main-menu.mp3');
+    // Transitions
+    assets.audio.transitionWin = loadSound('assets/audio/music-transitions-level-win.mp3');
+    assets.audio.transitionLost = loadSound('assets/audio/music-transitions-level-lost.mp3');
+    assets.audio.transitionLevelStart = loadSound('assets/audio/music-transitions-level-start.mp3');
+    // Sound Effects
+    assets.audio.sfxButtonDenied = loadSound('assets/audio/fx-button-denied.mp3');
+    assets.audio.sfxCharacterHit = loadSound('assets/audio/fx-character-hit.mp3');
+    assets.audio.sfxWallHit = loadSound('assets/audio/fx-wall-hit.mp3');
+    assets.audio.sfxPlayerMove = loadSound('assets/audio/fx-player-move.mp3');
+    assets.audio.sfxPlayerShoot = loadSound('assets/audio/fx-shoot-spell.mp3');
 }
 
 // SETUP FUNCTION
@@ -51,6 +66,7 @@ function preload() {
 function setup() {
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, P2D, document.getElementById('game-container'));
     setupLevelSelector();
+    getAudioContext().suspend();
 }
 
 // GAME STATE MANAGER (DRAW)

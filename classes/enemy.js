@@ -78,6 +78,10 @@ class Enemy {
                 projectiles.push(new Projectile(this.x + this.w / 2, this.y + this.h / 2, player.x + player.w / 2, player.y + player.h / 2, true));
                 // Reset timer after shooting
                 this.shootTimer = 120;
+                // Play shooting sound
+                if (!assets.audio.sfxPlayerShoot.isPlaying()) {
+                    assets.audio.sfxPlayerShoot.play();
+                }
             }
             else {
                 // If tried to shoot but could not, set Timer to shorter value
