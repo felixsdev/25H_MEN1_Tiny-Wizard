@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Tiny Wizard</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+
+    <!-- Libraries -->
+    <script src="lib/p5.js"></script>
+    <script src="lib/p5.touchgui.js"></script>
+
+    <!-- Game constants & globals -->
+    <script src="config.js"></script>
+
+    <!-- Classes -->
+    <script src="classes/wall.js"></script>
+    <script src="classes/floor.js"></script>
+    <script src="classes/projectile.js"></script>
+    <script src="classes/enemy.js"></script>
+    <script src="classes/player.js"></script>
+
+    <!-- Systems -->
+    <script src="systems/collision.js"></script>
+    <script src="systems/controls.js"></script>
+    <script src="systems/gamestates.js"></script>
+    <script src="systems/levelmanager.js"></script>
+
+    <!-- Main game file -->
+    <script src="sketch.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <h1>Tiny Wizard</h1>
+    </header>
+    <main>
+      <h3>Controls</h3>
+      <p>Movement: WASD</p>
+      <p>Shoot: Left Mouse Button</p>
+      <p>Menu: Escape</p>
+      <p>Reload: R</p>
+      <p>Have fun!</p>
+      <!-- p5.js canvas -->
+      <canvas id="game-container"></canvas>
+    </main>
+    <footer>
+      <p>Made by Felix Steiner</p>
+    </footer>
+  </body>
+
+  
+</html>

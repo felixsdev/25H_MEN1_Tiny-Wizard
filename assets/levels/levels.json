@@ -1,0 +1,5 @@
+[
+  { "id": 1, "filename": "level1.json", "name": "The Journey Begins" },
+  { "id": 2, "filename": "level2.json", "name": "The Skeleton Path" },
+  { "id": 3, "filename": "level3.json", "name": "The Labyrinth" }
+]

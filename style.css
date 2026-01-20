@@ -1,0 +1,75 @@
+/* ==================================================
+Setup
+================================================== */
+
+/* Import Alagard font */
+@font-face {
+  font-family: Alagard;
+  src: url(assets/font/alagard.ttf);
+}
+
+/* Define variables */
+:root {
+  --brown-100: #C3B99C;
+  --brown-200: #A88D75;
+  --brown-300: #81675D;
+  --brown-400: #65514B;
+  --brown-500: #4A3C3A;
+  --brown-600: #423635;
+  --brown-700: #302B29;
+  --brown-800: #252223;
+  --brown-900: #18181B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==================================================
+Styles
+================================================== */
+
+/* Typography */
+h1 {
+  font-family: Alagard, sans-serif;
+  font-weight: normal;
+}
+
+p {
+  font-family: Alagard, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  background-color: var(--brown-900);
+  color: var(--brown-100);
+}
+
+header {  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#game-container {
+  border: 4px solid var(--brown-300);
+  box-shadow: 0 0 10px var(--brown-300);
+  margin-top: 20px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
