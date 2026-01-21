@@ -5,6 +5,8 @@
 
 // SIMPLE AABB COLLISION CHECK BETWEEN TWO RECTANGLES
 // Used for walking collisions and projectile hits
+// -------------------------------------------------------------------
+
 function checkCollision(rect1, rect2) {
     return (
         rect1.x < rect2.x + rect2.w &&
@@ -16,6 +18,8 @@ function checkCollision(rect1, rect2) {
 
 // CHECK LINE OF SIGHT BETWEEN TWO ENTITIES (NO WALLS IN BETWEEN)
 // Used for enemy AI to see if they can shoot the player
+// -------------------------------------------------------------------
+
 function checkLineOfSight(entity1, entity2) {
     let x1 = entity1.x + entity1.w / 2;
     let y1 = entity1.y + entity1.h / 2;

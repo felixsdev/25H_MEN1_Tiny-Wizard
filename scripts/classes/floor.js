@@ -1,6 +1,13 @@
+// ============================================================================
 // classes/floor.js
+// FLOOR CLASS
+// ============================================================================
+
 class Floor {
-    // Constructor to initialize wall properties
+
+    // CONSTRUCTOR
+    // --------------------------------
+
     constructor(x, y, w, h, type) {
         this.x = x;
         this.y = y;
@@ -9,6 +16,9 @@ class Floor {
         this.type = type;
     }
 
+    // DISPLAY
+    // --------------------------------
+    
     // Renders the floors. (Called in draw)
     display() {
         // Draw the loaded floor sprite to fill the floor's dimensions

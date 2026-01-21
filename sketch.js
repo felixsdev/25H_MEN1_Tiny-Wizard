@@ -3,18 +3,88 @@
 // MAIN GAME FILE
 // ============================================================================
 
-// PRELOAD FUNCTION
-// Loads all assets and levels manifest before the game starts
+// -------------------------------------------------------------
+// GLOBAL VARIABLES
+// -------------------------------------------------------------
+
+// CONFIG
+// -----------------------------
+
+// Canvas
+const CANVAS_WIDTH = 1200;
+const CANVAS_HEIGHT = 600;
+
+// Player settings
+const playerShootCooldown = 40;
+const playerMoveSpeed = 2;
+
+// ASSETS & GAME OBJECTS
+// -----------------------------
+
+// Asset Containers
+const assets = {
+    player: {},
+    enemies: {
+        skeleton: [],
+        demon: []
+    },
+    walls: {},
+    floors: {},
+    audio: {}
+};
+
+// Game Objects
+let player;
+let enemies = [];
+let walls = [];
+let floors = [];
+let projectiles = [];
+
+// Map & Level Data
+let levels = [];
+let gridData;
+let gridCols = 0; 
+let gridRows = 0;
+let cellWidth;
+let cellHeight;
+
+// UI
+let selectorGui;
+let levelButtons = [];
+
+// GAME STATE
+// -----------------------------
+
+let gameState // 'SELECTOR', 'LOADING', 'RUNNING', 'WIN', 'LOSE'
+let currentLevel = 0;
+let unlockedLevel = 1;
+
+// AUDIO FLAGS
+// -----------------------------
+
+let hasPlayedWinSound = false;
+let hasPlayedLoseSound = false;
+
+
+// -------------------------------------------------------------
+// PRELOAD ASSETS
+// -------------------------------------------------------------
 
 function preload() {
-    // Levels
+
+    // LOAD LEVEL MANIFEST
+    // -----------------------------
+
     levels = loadJSON('assets/levels/levels.json',
         (data) => {
-            console.log('\u001b[1;32mLevel manifest loaded successfully');
+            console.log('\u001b[1;32mLevel manifest loaded\u001b[0m');
             levels = data;
         },
         (err) => console.error('Failed to load levels', err)
     );
+    
+    // SPRITES
+    // -----------------------------
 
     // Player Sprites
     for (let i = 0; i < 8; i++) {
@@ -34,16 +104,17 @@ function preload() {
     for (let i = 0; i < 4; i++) {
         assets.enemies.demon[i] = loadImage(`assets/sprites/enemy_demon/enemy_demon_000${i + 1}.png`);
     }
-
     // Environment
     assets.floors[0] = loadImage('assets/sprites/environment/floor_grass.png');
     assets.floors[1] = loadImage('assets/sprites/environment/floor_path.png');
-    // placeholder floor 2
+    // placeholder 2
     assets.walls[3] = loadImage('assets/sprites/environment/wall_stone.png');
-    assets.walls[4] = loadImage('assets/sprites/environment/wall_wood.png');
-    // placeholder wall 5
+    // placeholder 4
+    // placeholder 5
 
-    // Audio Assets
+    // AUDIO
+    // -----------------------------
+
     soundFormats('mp3');
     // Music
     assets.audio.musicGame = loadSound('assets/audio/music-fight.mp3');
@@ -60,39 +131,49 @@ function preload() {
     assets.audio.sfxPlayerShoot = loadSound('assets/audio/fx-shoot-spell.mp3');
 }
 
+
+// -------------------------------------------------------------
 // SETUP FUNCTION
-// Initializes the canvas and level selector UI
+// -------------------------------------------------------------
 
 function setup() {
+    // Create canvas in the game-container div
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT, P2D, document.getElementById('game-container'));
-    setupLevelSelector();
+
+    // Initalize selector
+    initializeLevelSelector();
+
+    // Audio and graphics settings
     getAudioContext().suspend();
+    noSmooth();
 }
 
+// -------------------------------------------------------------
 // GAME STATE MANAGER (DRAW)
-// Calls different draw functions from the "systems/gamestate.js" file based on gameState
+// Calls the draw function based on the current game state
+// -------------------------------------------------------------
 
 function draw() {
     switch (gameState) {
-        case 'SELECTOR':
-            console.log("Game State: SELECTOR");
-            drawSelector();
-            break;
         case 'LOADING':
-            console.log("Game State: LOADING");
+            console.log("Drawing: \u001b[1;36mLOADING\u001b[0m");
             drawLoading();
             break;
+        case 'SELECTOR':
+            console.log("Drawing: \u001b[1;35mSELECTOR\u001b[0m");
+            drawSelector();
+            break;
         case 'RUNNING':
-            console.log("Game State: RUNNING");
+            console.log("Drawing: \u001b[1;32mRUNNING\u001b[0m");
             drawLevel();
             break;
         case 'WIN':
-            console.log("Game State: WIN");
+            console.log("Drawing: \u001b[1;33mWIN\u001b[0m");
             drawWin();
             break;
         case 'LOSE':
-            console.log("Game State: LOSE");
+            console.log("Drawing: \u001b[1;31mLOSE\u001b[0m");
             drawLose();
             break;
     }
-} 
+}

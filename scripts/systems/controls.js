@@ -1,21 +1,26 @@
 // ============================================================================
 // systems/controls.js
 // CONTROLS HANDLING
-// (Player controls are handled in the Player class file "player.js")")
 // ============================================================================
 
 function keyPressed() {
+
     // GAME STATE CONTROLS
+    // --------------------------------
+
     if (gameState === 'RUNNING' || gameState === 'WIN' || gameState === 'LOSE') {
         if (key === 'Escape') {
-            gameState = 'SELECTOR';
+            initializeLevelSelector();    
         }
         
         if (key === 'r' || key === 'R') {
-            loadLevelData(currentLevel || 1); 
+            loadLevelData(currentLevel); 
         }
     }
+
     // AUDIO CONTROLS
+    // --------------------------------
+
     if (key === 'm' || key === 'M') {
         if (getAudioContext().state === 'running') {
             getAudioContext().suspend();
@@ -25,7 +30,11 @@ function keyPressed() {
     }
 }
 
-// SHOOTING
+// PLAYER CONTROLS
+// --------------------------------
+
+// Player movement controls are handled in the player class file "classes/player.js")
+
 function mousePressed() { 
     if (gameState === 'RUNNING' && mouseButton === LEFT && player) {
         // Only shoot if the timer has reached 0

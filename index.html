@@ -7,30 +7,31 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="style.css"> 
 
-    <!-- Libraries -->
-    <script src="lib/p5.min.js"></script>
-    <script src="lib/p5.touchgui.js"></script>
-    <script src="lib/p5.sound.min.js"></script>
-
-    <!-- Game constants & globals -->
-    <script src="config.js"></script>
-
-    <!-- Classes -->
-    <script src="classes/wall.js"></script>
-    <script src="classes/floor.js"></script>
-    <script src="classes/projectile.js"></script>
-    <script src="classes/enemy.js"></script>
-    <script src="classes/player.js"></script>
-
-    <!-- Systems -->
-    <script src="systems/collision.js"></script>
-    <script src="systems/controls.js"></script>
-    <script src="systems/gamestates.js"></script>
-    <script src="systems/levelmanager.js"></script>
-
     <!-- Main game file -->
     <script src="sketch.js" defer></script>
 
+    <!-- Libraries -->
+    <script src="scripts/lib/p5.min.js"></script>
+    <script src="scripts/lib/p5.touchgui.js"></script>
+    <script src="scripts/lib/p5.sound.min.js"></script>
+
+    <!-- Classes -->
+    <script src="scripts/classes/wall.js"></script>
+    <script src="scripts/classes/floor.js"></script>
+    <script src="scripts/classes/projectile.js"></script>
+    <script src="scripts/classes/enemy.js"></script>
+    <script src="scripts/classes/player.js"></script>
+
+    <!-- Systems -->
+    <script src="scripts/systems/collision.js"></script>
+    <script src="scripts/systems/controls.js"></script>
+
+    <!-- Game States -->
+    <script src="scripts/gamestates/loading.js"></script>
+    <script src="scripts/gamestates/lose.js"></script>
+    <script src="scripts/gamestates/running.js"></script>
+    <script src="scripts/gamestates/selector.js"></script>
+    <script src="scripts/gamestates/win.js"></script>
   </head>
   <body>
     <header>
@@ -47,6 +48,5 @@
       <p>Made by Felix Steiner</p>
     </footer>
   </body>
-
   
 </html>

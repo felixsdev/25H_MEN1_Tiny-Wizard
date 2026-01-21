@@ -1,4 +1,13 @@
+// ============================================================================
+// classes/enemy.js
+// ENEMY CLASS
+// ============================================================================
+
 class Enemy {
+
+    // CONSTRUCTOR
+    // --------------------------------
+
     constructor(w, h, x, y, row, col, grid, cellW, cellH, type) {
         this.w = w;
         this.h = h;
@@ -32,6 +41,9 @@ class Enemy {
         this.findNextTarget();
         this.shootTimer = this.shootIntervalBase;
     }
+
+    // DISPLAY & UPDATE
+    // --------------------------------
 
     display() {
         let img = this.sprites[this.spriteIndex];
@@ -77,7 +89,7 @@ class Enemy {
             if (player && checkLineOfSight(this, player)) {
                 projectiles.push(new Projectile(this.x + this.w / 2, this.y + this.h / 2, player.x + player.w / 2, player.y + player.h / 2, true));
                 // Reset timer after shooting
-                this.shootTimer = 120;
+                this.shootTimer = 80;
                 // Play shooting sound
                 if (!assets.audio.sfxPlayerShoot.isPlaying()) {
                     assets.audio.sfxPlayerShoot.play();
@@ -85,7 +97,7 @@ class Enemy {
             }
             else {
                 // If tried to shoot but could not, set Timer to shorter value
-                this.shootTimer = 30;
+                this.shootTimer = 40;
             }
         }
     }

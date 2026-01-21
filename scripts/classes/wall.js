@@ -1,6 +1,13 @@
+// ============================================================================
 // classes/wall.js
+// WALL CLASS
+// ============================================================================
+
 class Wall {
-    // Constructor to initialize wall properties
+
+    // CONSTRUCTOR
+    // --------------------------------
+
     constructor(x, y, w, h, type) {
         this.x = x;
         this.y = y;
@@ -8,6 +15,9 @@ class Wall {
         this.h = h;
         this.type = type;
     }
+
+    // DISPLAY
+    // --------------------------------
 
     // Renders the walls. (Called in draw)
     display() {

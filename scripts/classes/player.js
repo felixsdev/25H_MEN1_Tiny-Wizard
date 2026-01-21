@@ -1,6 +1,13 @@
+// ============================================================================
+// classes/player.js
+// PLAYER CLASS
+// ============================================================================
+
 class Player {
-    // classes/player.js
-    // Constructor to initialize player properties 
+
+    // CONSTRUCTOR
+    // --------------------------------
+
     constructor(w, h, x, y) {
         this.x = x;
         this.y = y;
@@ -14,6 +21,9 @@ class Player {
         this.shootCooldown = playerShootCooldown;
     }
 
+    // DISPLAY
+    // --------------------------------
+
     // Renders the player sprite at its new (x, y) position. (Called in draw)
     display() {
         let img = assets.player[this.spriteIndex];
@@ -23,6 +33,9 @@ class Player {
         image(img, 0, 0, this.w, this.h);
         pop();
     }
+
+    // INPUT HANDLING
+    // --------------------------------
 
     // Calculates and sets the velocity (vx and vy) based on key presses. (Called in draw)
     handleInput() {
@@ -90,6 +103,9 @@ class Player {
             assets.audio.sfxPlayerMove.stop();
         }
     }
+
+    // UPDATE
+    // --------------------------------
 
     // Checks collision and apply the new velocity (vx and vy) to the player's position (x and y). (Called in draw)
     update() {

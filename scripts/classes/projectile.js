@@ -1,6 +1,13 @@
+// ============================================================================
+// classes/projectile.js
+// PROJECTILE CLASS
+// ============================================================================
+
 class Projectile {
-    // classes/projectile.js
-    // Constructor to initialize projectile properties
+
+    // CONSTRUCTOR
+    // --------------------------------
+
     constructor(x, y, targetX, targetY, isEnemyProjectile) {
         this.x = x;
         this.y = y;
@@ -21,6 +28,9 @@ class Projectile {
         this.dead = false;
     }
 
+    // UPDATE
+    // --------------------------------
+
     update() {
         if (this.dead) return;
 
@@ -35,7 +45,6 @@ class Projectile {
             this.dead = true;
             return;
         }
-
         // Wall collision
         for (const wall of walls) {
             if (checkCollision(this, wall)) {
@@ -45,12 +54,11 @@ class Projectile {
                 return;
             }
         }
-
         // Entity collision
         if (this.isEnemy) {
             // If Enemy Projectile -> Check collision with PLAYER
             if (player && checkCollision(this, player)) {
-                console.log("Player hit!");
+                console.log("\u001b[1;31mPlayer dead!\u001b[0m");
                 this.dead = true;
                 gameState = 'LOSE'; // Trigger Game Over
             }
@@ -69,17 +77,18 @@ class Projectile {
         }
     }
 
+    // DISPLAY
+    // --------------------------------
+
     display() {
         push();
         noStroke();
-        
         // Different colors for different bullets
         if (this.isEnemy) {
-            fill(255, 0, 255);
+            fill(50, 50, 50);
         } else {
             fill(255, 80, 80);
         }
-        
         rect(this.x, this.y, this.w, this.h);
         pop();
     }
