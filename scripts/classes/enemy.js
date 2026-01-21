@@ -97,7 +97,7 @@ class Enemy {
             }
             else {
                 // If tried to shoot but could not, set Timer to shorter value
-                this.shootTimer = 40;
+                this.shootTimer = 60;
             }
         }
     }
