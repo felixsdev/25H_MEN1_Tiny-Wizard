@@ -170,9 +170,7 @@ function drawLevel() {
     // -----------------------------
 
     if (enemies.length === 0) {
-        gameState = 'WIN';
-        unlockedLevel = Math.max(unlockedLevel, currentLevel + 1);
-        console.log("\u001b[1;33mLevel " + unlockedLevel + " unlocked\u001b[0m");
+        initializeWin();
     }
 
     // DEBUG: Draw Line of Sight from Enemies to Player

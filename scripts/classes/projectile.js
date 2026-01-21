@@ -60,7 +60,7 @@ class Projectile {
             if (player && checkCollision(this, player)) {
                 console.log("\u001b[1;31mPlayer dead!\u001b[0m");
                 this.dead = true;
-                gameState = 'LOSE'; // Trigger Game Over
+                initializeLose(); // Trigger Game Over
             }
         } else {
             // If Player Projectile -> Check collision with ENEMIES

@@ -50,7 +50,11 @@ let cellHeight;
 
 // UI
 let selectorGui;
+let winGui;
+let loseGui;
 let levelButtons = [];
+let winButtons = [];
+let loseButtons = [];
 
 // GAME STATE
 // -----------------------------
@@ -65,6 +69,11 @@ let unlockedLevel = 1;
 let hasPlayedWinSound = false;
 let hasPlayedLoseSound = false;
 
+// FONT
+// -----------------------------
+
+let fontAlagard;
+
 
 // -------------------------------------------------------------
 // PRELOAD ASSETS
@@ -72,7 +81,12 @@ let hasPlayedLoseSound = false;
 
 function preload() {
 
-    // LOAD LEVEL MANIFEST
+    // FONT
+    // -----------------------------
+    
+    fontAlagard = loadFont('assets/font/alagard.ttf');
+
+    // LEVEL MANIFEST
     // -----------------------------
 
     levels = loadJSON('assets/levels/levels.json',

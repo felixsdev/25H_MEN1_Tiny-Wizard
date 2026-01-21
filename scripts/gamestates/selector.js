@@ -31,19 +31,27 @@ function initializeLevelSelector() {
         // Locked vs Unlocked Styling
         if (lvl.id <= unlockedLevel) {
             btn.setStyle({
-                fillBg: color("#FF0000"),
-                fillBgHover: color("#FF4444"),
-                fillLabel: color("#FFFFFF"),
+                strokeWeight: 0,
+                fillBg: color("#A88D75"),
+                fillBgHover: color("#C3B99C"),
+                fillLabel: color("#252223"),
+                fillLabelHover: color("#302B29"),
                 rounding: 0,
-                textSize: 20
+                textSize: 24,
+                font: "fontAlagard"
             });
         } else {
             btn.setStyle({
-                fillBg: color(100),
-                fillBgActive: color(100),
-                fillLabel: color(150),
+                strokeWeight: 0,
+                fillBg: color("#252223"),
+                fillBgHover: color("#302B29"),
+                fillLabel: color("#302B29"),
+                fillLabelHover: color("#423635"),
+                fillBgActive: color("#302B29"),
+                fillLabelActive: color("#423635"),
                 rounding: 0,
-                textSize: 20
+                textSize: 24,
+                font: "fontAlagard"
             });
         }
         levelButtons.push(btn);
@@ -82,13 +90,14 @@ function drawSelector() {
     // Draw background and UI
     background(20);
     push();
-    fill(255);
+    fill("#C3B99C");
+    textFont(fontAlagard);
     textAlign(CENTER);
-    textSize(40);
+    textSize(48);
     text("Level Selector", CANVAS_WIDTH / 2, CANVAS_HEIGHT / 4);
     drawGui(selectorGui);
 
-    // Check button clicks
+    // Handle Inputs
     for (let i = 0; i < levelButtons.length; i++) {
         if (levelButtons[i].isPressed && unlockedLevel >= levels[i].id) {
             loadLevelData(levels[i].id);
