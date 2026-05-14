@@ -61,7 +61,7 @@ let loseButtons = [];
 
 let gameState // 'SELECTOR', 'LOADING', 'RUNNING', 'WIN', 'LOSE'
 let currentLevel = 0;
-let unlockedLevel = 1;
+let unlockedLevel = 3;
 
 // AUDIO FLAGS
 // -----------------------------
