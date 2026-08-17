@@ -1,6 +1,6 @@
 # Tiny Wizard
 
-A browser-based top-down shooter built with [p5.js](https://p5js.org/). Play as a wizard fighting through three hand-crafted levels, defeating skeletons and demons before they take you out.
+A browser-based top-down shooter built with [p5.js](https://p5js.org/). Play as a wizard fighting through three hand-crafted levels, defeating skeletons and demons before they take you out. 
 
 ---
 
